@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;500;700&display=swap');
 
 :root {
-    /* --header-h: 88px; */
+    --header-h: 88px;
     --menu-gap: 32px;
     --link-gap: 8px;
     --logo-h: 30px;
@@ -19,28 +19,16 @@ img { display: block; max-width: 100%; }
 
 /* Header */
 .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1100;
     height: var(--header-h);
     background: #fff;
-}
-
-.site-header.scrolled {
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1100;
-    height: var(--header-h);
-    background: #fff;
-    border-bottom: 1px solid #b1b9c9;
+    border-bottom: 1px solid #e5e7eb;
     box-shadow: 0 8px 16px rgba(0,0,0,0.04), 0 1px 0 rgba(0,0,0,0.06);
 }
-
-
 .header-container {
     height: 100%;
     display: flex;
@@ -180,20 +168,22 @@ img { display: block; max-width: 100%; }
     background: #fff;
     min-height: calc(100vh - var(--header-h));
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 36px 0 96px;
+    align-items: center;
 }
 
 .hero__container {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    max-width: 1208px;
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
 .hero__wrap {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 24px;
+    padding: 36px 0 96px;
 }
 
 /* TEXTO */
@@ -322,7 +312,7 @@ img { display: block; max-width: 100%; }
 }
 .hero__media img {
     width: 100%;
-    max-width: 880px;
+    max-width: 616px;
     height: auto;
     display: block;
     border-radius: 20px;
@@ -422,106 +412,174 @@ img { display: block; max-width: 100%; }
     line-height: 24px;
     color: #fff;
 }
+:root {
+    --wrap: 1128px;
+    --gap: 24px;
+    --neutral-600: #3b3d41;
+    --neutral-800: #111111;
+    --violet: #6c39f2;
 
-.footer {
-    background-color: #f5f5fc;
-    padding: 40px 0;
-    font-family: "DM Sans", sans-serif;
+    /* afinado de posición de redes respecto del logo */
+    --social-offset: 32px;   /* mové este valor para que “empiecen” casi sobre la última tarjeta */
+    --social-right: 24px;    /* aire a la derecha */
+}
+
+/* ===== Base footer ===== */
+.site-footer {
+    background: #f5f6ff;
+    border-top: 1px solid #e5e7ef;
     color: #1d1e20;
 }
 
-.footer-top {
-    margin-bottom: 20px;
+.footer-wrap {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 28px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.footer-logo-social {
+/* ===== Filas ===== */
+.footer-row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-}
-
-.footer-logo {
-    height: 30px;
-}
-
-.social-icons {
-    display: flex;
-    gap: 12px;
-}
-
-.social-icons img {
-    width: 32px;
-    height: 32px;
-    transition: opacity 0.3s ease;
-}
-
-.social-icons img:hover {
-    opacity: 0.6;
-}
-
-.footer-links-payments {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-    font-size: 14px;
-    margin-bottom: 24px;
-}
-
-.footer-links a {
-    color: #1d1e20;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #673de6;
-}
-
-.payment-methods {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    gap: 24px;
     flex-wrap: wrap;
 }
 
-.payment-methods img {
-    height: 40px;
-    padding: 4px 8px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    background-color: #fff;
+/* ===== FILA 1: logo + redes ===== */
+.row-1 {
+    align-items: center;
+}
+.footer-logo { flex: 0 0 auto; }
+.footer-logo img {
+    height: 30px;
+    display: block;
 }
 
-.more-link {
-    font-size: 14px;
-    font-weight: 700;
-    color: #673de6;
-    text-decoration: none;
-}
-
-.more-link:hover {
-    opacity: 0.8;
-}
-
-.footer-bottom {
+/* Grupo de redes: un solo flex-item; más a la derecha */
+.social {
+    flex: 0 0 auto;                /* tamaño según contenido */
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    border-top: 1px solid #ddd;
-    padding-top: 16px;
-    font-size: 14px;
-    line-height: 20px;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    margin-left: var(--social-offset);  /* desplaza el bloque hacia la derecha */
+    margin-right: var(--social-right);  /* aire al borde derecho */
+}
+.social-btn {
+    width: 32px;                   /* caja 32×32 como en el original */
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-800);
+    text-decoration: none;
+    transition: opacity .15s ease;
+}
+.social-btn:hover { opacity: 0.8; } /* sin movimiento */
+.social-btn svg {
+    width: 24px;                   /* ícono interno */
+    height: 24px;
+    display: block;
 }
 
+/* ===== FILA 2: legales (izq) + pagos (der) ===== */
+.row-2 {
+    align-items: center;
+    column-gap: 8px;               /* más pegado al bloque de legales */
+    row-gap: 8px;                  /* separación vertical si hacen wrap */
+}
+
+/* Legales = un solo ítem */
+.footer-legal {
+    flex: 0 1 auto;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.footer-legal a {
+    font-size: 14px;
+    line-height: 19px;
+    color: #1d1e20;
+    text-decoration: none;         /* sin subrayado */
+    font-weight: 500;
+    transition: color .15s ease;
+}
+.footer-legal a:hover { color: var(--violet); }
+
+/* Grupo de pagos = un solo ítem */
+.payment-methods {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 8px;               /* separación horizontal entre chips */
+    row-gap: 8px;                  /* separación vertical si hay 2 líneas */
+}
+.pm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;                  /* chips más grandes */
+    padding: 4px 12px;
+    background: #fff;
+    border: 1px solid #e6e7ee;
+    border-radius: 8px;
+}
+.pm img {
+    height: 28px;                  /* icono acorde al chip de 44 */
+    width: auto;
+    display: block;
+}
+.pm-more {
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 700;
+    color: var(--violet);
+    text-decoration: none;
+    padding-left: 2px;
+    transition: opacity .15s ease;
+}
+.pm-more:hover { opacity: 0.8; }
+
+/* ===== Separador ===== */
+.footer-sep {
+    border: none;
+    border-top: 1px solid #e5e7ef;
+    margin: 24px 0 0;
+}
+
+/* ===== FILA 3: copyright (izq) + IVA (der) ===== */
+.footer-bottom { align-items: flex-start; }
 .footer-bottom p {
     margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--neutral-600);
+}
+.copyright {
+    max-width: 806px;              /* fuerza el salto en “artificial.” */
+}
+.tax-note {
+    margin-left: auto;
+    white-space: nowrap;           /* queda a la derecha sin cortar */
 }
 
-.price-note {
-    text-align: right;
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+    .footer-row { gap: 16px; }
+    .footer-legal { gap: 16px; }
+    .copyright { max-width: 100%; }
+    .tax-note { white-space: normal; }
+    /* en tablet, acercá un poco las redes si hace falta */
+    .social { margin-left: 16px; margin-right: 16px; }
+}
+
+@media (max-width: 600px) {
+    .pm { height: 38px; }
+    .pm img { height: 22px; }
+    .social { gap: 12px; }
 }
